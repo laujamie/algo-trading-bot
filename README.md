@@ -2,7 +2,7 @@
 
 An algorithmic trading bot created in Python to trade distressed stocks and **QQQ**.
 
-Algorithm used here can be found on ![Medium](https://medium.com/automation-generation/how-to-trade-distressed-stocks-using-free-apis-dd7f43e9be33).
+Algorithm used here can be found on [Medium](https://medium.com/automation-generation/how-to-trade-distressed-stocks-using-free-apis-dd7f43e9be33).
 
 ## Usage
 
