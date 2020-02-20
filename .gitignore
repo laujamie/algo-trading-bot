@@ -105,3 +105,6 @@ dmypy.json
 .vscode
 
 tickers.txt
+
+# Env stuff
+.env

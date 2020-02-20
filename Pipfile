@@ -10,6 +10,7 @@ yapf = "*"
 requests = "*"
 lxml = "*"
 beautifulsoup4 = "*"
+alpaca-trade-api = "*"
 
 [requires]
 python_version = "3.7"
