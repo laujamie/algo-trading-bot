@@ -3,6 +3,8 @@ import requests
 import json
 import alpaca_trade_api as tradeapi
 
+from scraper import get_tickers
+
 base_url = 'https://paper-api.alpaca.markets'
 tenquant_base_url = 'https://api.tenquant.io'
 
@@ -12,19 +14,27 @@ if __name__ == '__main__':
     with open('tickers.txt', 'r+') as f:
         tickers = f.read().splitlines()
 
+    if len(tickers) == 0:
+        get_tickers()
+        with open('tickers.txt', 'r+') as f:
+            tickers = f.read().splitlines()
+
     tenquant_api = os.environ['TENQUANT_API']
 
     key = os.environ['ALPACA_API']
     secret = os.environ['ALPACA_SECRET']
     api = tradeapi.REST(key, secret, base_url, api_version='v2')
     clock = api.get_clock()
+    account = api.get_account()
 
     if not clock.is_open:
         print('Market closed, exiting now...')
         exit
 
     all_stocks_data = {}
+    print('Retrieving stock data...')
     for ticker in tickers:
+        print('Processing {}'.format(ticker))
         params = {'ticker': ticker, 'key': tenquant_api}
         req_json = requests.get(tenquant_base_url + '/data',
                                 params=params).content
@@ -44,7 +54,7 @@ if __name__ == '__main__':
 
     all_stocks_data = sorted(all_stocks_data.items(), key=lambda x: x[1])
 
-    shorts = all_stocks_data[len(all_stocks_data) // 5 + 1]
+    shorts = all_stocks_data[:len(all_stocks_data) // 5 + 1]
     print('Shorts:')
     print(shorts)
 
