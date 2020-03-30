@@ -6,7 +6,7 @@ Original algorithm used here can be found on [Medium](https://medium.com/automat
 
 ## Usage
 
-Assuming you are on a UNIX system, run the following in the project base folder:
+Assuming you are using Linux, run the following in the project base folder:
 
 ```bash
 pip3 install --upgrade pipenv  # Skip this if you have pipenv
